@@ -50,6 +50,8 @@ public class KMIPClientGUIMenuBar extends JMenuBar implements ActionListener{
 		this.add(mlist);
 		
 		addJMenuItem("Reset", mlist);
+		addJMenuItem("Load Config", mlist);
+		addJMenuItem("Load Use Cases", mlist);
 		addJMenuItem("Exit", mlist);
 	}
 
@@ -70,8 +72,16 @@ public class KMIPClientGUIMenuBar extends JMenuBar implements ActionListener{
 
 		if(e.getActionCommand().equals("Reset")){	
 			gui.reset();
-		}	
+		}
 		
+		if(e.getActionCommand().equals("Load Config")){	
+			gui.loadConfig();
+		}
+
+		if(e.getActionCommand().equals("Load Use Cases")){	
+			gui.loadUseCases();
+		}
+
 		if(e.getActionCommand().equals("Exit")){	
 			System.exit(0);
 		}	

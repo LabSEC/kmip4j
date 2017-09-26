@@ -31,10 +31,9 @@ import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.File;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
-
 
 public class KMIPClientGUI extends JFrame{
 
@@ -58,19 +57,21 @@ public class KMIPClientGUI extends JFrame{
 	public KMIPClientGUIResponseArea responseArea;
 	public KMIPClientGUIStatusBar statusBar;
 	
+	private JFileChooser fc;
 
 	private KMIPStub createStub() {
-		try {
-			File configFile = new File(ClassLoader.getSystemClassLoader().getResource("StubConfig.xml").toURI());
+		//try {
+			File configFile = new File("/home/perin/kmip/StubConfig.xml");
+			//InputStream configFile = getClass().getResourceAsStream("StubConfig.xml");
 			return new KMIPStub(configFile);
-		} catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
+		//} catch (URISyntaxException e) {
+		// 	throw new RuntimeException(e);
+		// }
 	}
 
 	public KMIPClientGUI(){
 		// load UseCases from XML
-		this.ucxml = new KMIPClientGUIxml(this);
+		this.ucxml = new KMIPClientGUIxml(this, new File("/home/perin/kmip/UseCases.xml"));
 		this.kmipStub = createStub();
 		setWindow();
 	}
@@ -104,6 +105,8 @@ public class KMIPClientGUI extends JFrame{
 		this.setLocationRelativeTo(null);
 		// show Frame
 		this.setVisible(true);
+
+		fc = new JFileChooser();
 	}
 
 	private void setTabbedPane() {
@@ -196,13 +199,44 @@ public class KMIPClientGUI extends JFrame{
 		logger.info("Reset GUI...");
 		this.kmipStub = createStub();
 		this.ucxml = new KMIPClientGUIxml(this);
+		ucc = new KMIPClientGUIUseCaseChooser(this);
 		ucc.reset();
 		ucv.showSelectedUseCase();
 		responseArea.appendTextReceiveArea("");
 		responseArea.appendTextSendArea("");
 		logger.info("Reset Done!");
 	}
+
+	public void loadConfig() {
+		logger.info("Loading new config file...");
+		int returnVal = fc.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File configFile = fc.getSelectedFile();
+            this.kmipStub = new KMIPStub(configFile);
+    		responseArea.appendTextReceiveArea("");
+			responseArea.appendTextSendArea("");
+            logger.info("Opening: " + configFile.getName());
+        } else {
+            logger.info("Operation cancelled.");
+        }
+	}
 	
+	public void loadUseCases() {
+		logger.info("Loading new Use Cases file...");
+		int returnVal = fc.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File useCases = fc.getSelectedFile();
+            this.ucxml = new KMIPClientGUIxml(this, useCases);
+            this.centerContent.remove(ucc);
+			ucc = new KMIPClientGUIUseCaseChooser(this);
+			this.centerContent.add(ucc,"West");
+			ucv.showSelectedUseCase();
+            logger.info("Opening: " + useCases.getName());
+        } else {
+            logger.info("Operation cancelled.");
+        }
+	}
+
 	public static void main(String[] args) {
 		// configure Logger
 		logger.info("Hello KMIPClient! What a beatiful day;)");

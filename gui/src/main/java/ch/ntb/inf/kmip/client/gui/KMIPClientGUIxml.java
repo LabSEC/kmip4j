@@ -56,6 +56,11 @@ import ch.ntb.inf.kmip.objects.managed.Template;
 import ch.ntb.inf.kmip.types.KMIPByteString;
 
 
+
+//asdasd
+import java.io.*;
+
+
 public class KMIPClientGUIxml{
 
 	private KMIPClientGUI gui;
@@ -68,10 +73,11 @@ public class KMIPClientGUIxml{
 	public KMIPClientGUIxml(KMIPClientGUI gui) {
 		this.gui = gui;
 		try {
-			fXmlFile = new File(ClassLoader.getSystemClassLoader().getResource("xml/UseCases.xml").toURI());
+			//fXmlFile = new File(ClassLoader.getSystemClassLoader().getResource("xml/UseCases.xml").toURI());
+			InputStream input = getClass().getResourceAsStream("xml/UseCases.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
+			Document doc = dBuilder.parse(input);
 			doc.getDocumentElement().normalize();
 			nListUseCase = doc.getElementsByTagName("usecase");		
 			numberOfUseCases = nListUseCase.getLength();
@@ -79,6 +85,7 @@ public class KMIPClientGUIxml{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("Passou!");
 	}
 	
 	

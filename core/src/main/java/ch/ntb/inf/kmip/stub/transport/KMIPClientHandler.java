@@ -32,6 +32,7 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
+import ch.ntb.inf.kmip.utils.KMIPUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,6 +92,7 @@ class KMIPClientHandler implements Callable<ArrayList<Byte>> {
 				b[i]=al.get(i);
 			}
 			// Send data
+			logger.info("bytes to write: " + KMIPUtils.convertByteStringToHexString(b));
 			outToServer.write(b);
 			outToServer.flush();
 		} catch (IOException e) {
@@ -115,7 +117,7 @@ class KMIPClientHandler implements Callable<ArrayList<Byte>> {
 			e.printStackTrace();
 		} // try
        
-        logger.debug(resultBuff.length + " bytes read.");
+        logger.info(resultBuff.length + " bytes read.");
         ArrayList<Byte> response = new ArrayList<>();
         
         for(byte b:resultBuff){

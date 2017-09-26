@@ -25,7 +25,7 @@
  */
 package ch.ntb.inf.kmip.config;
 
-import java.io.File;
+import java.io.*;
 import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -48,6 +48,20 @@ public class ContextProperties extends Properties {
 		if (!fXmlFile.isFile()) {
 			throw new RuntimeException("Missing required config file " + fXmlFile.getPath());
 		}
+		try {
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder;
+			dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+			doc.getDocumentElement().normalize();
+
+			getInitParameters(doc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ContextProperties(InputStream fXmlFile) {
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;

@@ -27,7 +27,7 @@
 
 package ch.ntb.inf.kmip.stub;
 
-import java.io.File;
+import java.io.*;
 import java.io.FileOutputStream;
 import java.security.KeyStore;
 import java.util.ArrayList;
@@ -96,6 +96,38 @@ public class KMIPStub implements KMIPStubInterface {
 		}		
 	}
 	
+		public KMIPStub(InputStream configFile) {
+		super();
+		
+		try {
+		    ContextProperties props = new ContextProperties(configFile);
+
+		    this.encoder = (KMIPEncoderInterface) getClass(props.getProperty("Encoder"), "ch.ntb.inf.kmip.process.encoder.KMIPEncoder").newInstance();
+		    this.decoder = (KMIPDecoderInterface) getClass(props.getProperty("Decoder"), "ch.ntb.inf.kmip.process.decoder.KMIPDecoder").newInstance();
+		    this.transportLayer = (KMIPStubTransportLayerInterface) getClass(props.getProperty("TransportLayer"), "ch.ntb.inf.kmip.stub.transport.KMIPStubTransportLayerHTTP").newInstance();
+		    this.transportLayer.setTargetHostname(props.getProperty("TargetHostname"));
+			String keyStorePW = props.getProperty("KeyStorePW");
+			this.transportLayer.setKeyStorePW(keyStorePW);
+			String keyStoreLocation = props.getProperty("KeyStoreLocation");
+			File keyStoreFile = new File(keyStoreLocation);
+			if (!keyStoreFile.isFile()) {
+				// Doesn't exist yet, create a empty keystore
+				keyStoreFile.getParentFile().mkdirs();
+				KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+				ks.load(null, keyStorePW.toCharArray());
+				FileOutputStream fos = new FileOutputStream(keyStoreFile);
+				ks.store(fos, keyStorePW.toCharArray());
+				fos.close();
+			}
+	    	this.transportLayer.setKeyStoreLocation(keyStoreFile.getAbsolutePath());
+
+	    	UCStringCompare.testingOption = props.getIntProperty("Testing");
+	    	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+
 	private Class<?> getClass(String path, String defaultPath) throws ClassNotFoundException {
 		return Class.forName(KMIPUtils.getClassPath(path, defaultPath));
 	}
