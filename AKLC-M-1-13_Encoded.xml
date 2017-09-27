@@ -1,0 +1,221 @@
+<usecases>
+	<usecase id="0810">
+		<name>
+			<![CDATA[
+			Use Case 8.1 (0) - Create Key Pair
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+			Create a new private/public key pair. <br>
+			Make sure they are linked correctly by issuing <br>
+			Locate commands with the assigned Unique Identifiers <br>
+			Finally delete both key halves. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+			Create Key Pair<br>
+			In: commonAttributes = { <br>
+			CryptographicAlgorithm = 'RSA', <br>
+			CryptographicLength = '2048' <br>
+			} <br>
+			privateKeyAttributes = { <br>
+			Name = {  <br>
+			NameValue = 'PrivateKey1, <br>
+			NameType = '00000001' <br> 
+			} <br>
+			CryptographicUsageMask = '00000001', <br>
+			} <br>
+			publicKeyAttributes = { <br>
+			Name = {  <br>
+			NameValue = 'PublicKey1, <br>
+			NameType = '00000001' <br> 
+			} <br>
+			CryptographicUsageMask = '00000002', <br>
+			} <br>				
+			]]>
+		</details>
+
+		<batches>
+			<batch>
+				<operation>Create Key Pair</operation>
+
+				<templateattributestructure>
+					<type>CommonTemplateAttribute</type>
+					<attribute>
+						<name>Cryptographic Algorithm</name>
+						<value>RSA</value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Length</name>
+						<value>1024</value>
+					</attribute>
+				</templateattributestructure>
+				
+				<templateattributestructure>
+					<type>PrivateKeyTemplateAttribute</type>
+					<attribute>
+						<name>Name</name>
+						<values>
+							<valuename>namevalue</valuename>
+							<value>irivateKey1</value>
+							<valuename>nametype</valuename>
+							<value>UninterpretedTextString</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value>0x00000001</value>
+					</attribute>
+				</templateattributestructure>
+				
+				<templateattributestructure>
+					<type>PublicKeyTemplateAttribute</type>
+					<attribute>
+						<name>Name</name>
+						<values>
+							<valuename>namevalue</valuename>
+							<value>iublicKey1</value>
+							<valuename>nametype</valuename>
+							<value>UninterpretedTextString</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value>0x00000002</value>
+					</attribute>
+				</templateattributestructure>
+				
+			</batch>
+		</batches>
+
+		<ttlvrequest>42007801000001E84200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000000000000042000D0200000004000000010000000042000F01000001A042005C05000000040000000200000000420079010000018842001F0100000070420008010000003042000A070000001743727970746F6772617068696320416C676F726974686D0042000B05000000040000000400000000420008010000003042000A070000001443727970746F67726170686963204C656E6774680000000042000B020000000400000400000000004200650100000080420008010000004042000A07000000044E616D650000000042000B0100000028420055070000000B697269766174654B657931000000000042005405000000040000000100000000420008010000003042000A070000001843727970746F67726170686963205573616765204D61736B42000B0200000004000000010000000042006E0100000080420008010000004042000A07000000044E616D650000000042000B0100000028420055070000000A6975626C69634B65793100000000000042005405000000040000000100000000420008010000003042000A070000001843727970746F67726170686963205573616765204D61736B42000B02000000040000000200000000</ttlvrequest>
+		<ttlvresponse>42007B01000000C042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CC14C242000D0200000004000000010000000042000F010000006842005C0500000004000000020000000042007F0500000004000000000000000042007C010000004042006607000000144E634974614C70325A78574153794D354F4639440000000042006F0700000014774B794B7966394C546E3539556872654D52443300000000</ttlvresponse>
+	</usecase>
+
+	<usecase id="03122">
+		<name>
+			<![CDATA[
+				Use Case 3.1.2 (2) - Get Attributes (TODO Modificar metadados)
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				To verify that the attributes of the key<br>
+				were set correctly from the template, <br>
+				the client then issues a Get Attributes <br>
+				command. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Get attributes<br> 
+				In: uuidKey, <br>
+				attributeNames = { <br>
+				'Object Group', <br>
+				'ApplicationSpecificInformation', <br>
+				'ContactInformation',<br>
+				'x-Purpose' <br>
+				} <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Get Attributes</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>61b10614-d8b5-46f9-8d17-2fa6ea1d747a</value>
+					</attribute>
+					<attribute>
+						<name>State</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value></value>
+					</attribute>		
+					<attribute>
+						<name>Object Type</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Algorithm</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Length</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Digest</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Initial Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Last Change Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Activation Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Original Creation Date</name>
+						<value></value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000001a04200770100000038420069010000002042006a0200000004000000010000000042006b0200000004000000030000000042000d0200000004000000010000000042000f010000015842005c05000000040000000b000000004200790100000140420094080000001424554e495155455f4944454e5449464945525f300000000042000a0700000005537461746500000042000a070000001843727970746f67726170686963205573616765204d61736b42000a0700000011556e69717565204964656e7469666965720000000000000042000a070000000b4f626a6563742054797065000000000042000a070000001743727970746f6772617068696320416c676f726974686d0042000a070000001443727970746f67726170686963204c656e6774680000000042000a0700000006446967657374000042000a070000000c496e697469616c20446174650000000042000a07000000104c617374204368616e6765204461746542000a070000000f41637469766174696f6e20446174650042000a07000000164f726967696e616c204372656174696f6e20446174650000</ttlvrequest>
+		<ttlvresponse>42007B01000001B042007A0100000048420069010000002042006A0200000004000000010000000042006B020000000400000000000000004200920900000008000000004AFBE7C642000D0200000004000000010000000042000F010000015842005C05000000040000000B0000000042007F0500000004000000000000000042007C0100000130420094070000002436316231303631342D643862352D343666392D386431372D32666136656131643734376100000000420008010000002842000A070000000C4F626A6563742047726F75700000000042000B070000000647726F7570310000420008010000005842000A07000000204170706C69636174696F6E20537065636966696320496E666F726D6174696F6E42000B0100000028420003070000000373736C0000000000420002070000000F7777772E6578616D706C652E636F6D00420008010000003042000A0700000013436F6E7461637420496E666F726D6174696F6E000000000042000B07000000034A6F650000000000420008010000003042000A0700000009782D507572706F73650000000000000042000B070000000D64656D6F6E7374726174696F6E000000</ttlvresponse>
+	</usecase>
+
+
+	<usecase id="03133">
+		<name>
+			<![CDATA[
+			Use Case 3.1.3 (3) - Destroy
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+			Destroy the key.<br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+			Destroy (symmetric key) <br>
+			In: uuidKey <br>
+			]]>
+		</details>
+
+		<batches>
+			<batch>
+				<operation>Destroy</operation>
+				
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>1ed28ea5-2b31-4145-bcf2-36d0756d3890</value>
+					</attribute>
+				</attributes>
+			</batch>
+		</batches>
+
+		<ttlvrequest>42007801000000904200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000000000000042000D0200000004000000010000000042000F010000004842005C050000000400000014000000004200790100000030420094070000002431656432386561352D326233312D343134352D626366322D33366430373536643338393000000000</ttlvrequest>
+		<ttlvresponse>42007B01000000C042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CC148742000D0200000004000000010000000042000F010000006842005C0500000004000000020000000042007F0500000004000000000000000042007C01000000404200660700000014306331684C75476C6D77764648466458494458340000000042006F0700000014486455696B6C6F79314A47486C5A67504A56624100000000</ttlvresponse>
+	</usecase>
+</usecases>

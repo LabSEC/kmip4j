@@ -308,13 +308,11 @@ public class KMIPClientGUIxml{
 	private void addUniqueIdentifier(Element attribute, Attribute a){
 		String uid = gui.ucc.getSelectedUID();
 		String value;
-				System.out.println("2");
 		if ((uid.equals("Default"))) {	// get value from XML
 			value = getTextFromElement(attribute, "value");	
 		} else {	// get value from GUI
 			value = uid;
 		}
-				System.out.println("3");
 		a.setValue(value, null);
 	}
 	
