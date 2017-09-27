@@ -62,8 +62,7 @@ public class KMIPStubTransportLayerTLS implements
             // init context with managers data
             SSLSocketFactory factory = initItAll(keyManagers, trustManagers);
             // execute Post
-            String responseString = executePost(targetHostname, PORT, factory, al);
-            return(KMIPUtils.convertHexStringToArrayList(responseString));
+            return executePost(targetHostname, PORT, factory, al);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -94,18 +93,9 @@ public class KMIPStubTransportLayerTLS implements
 
     }
 
-    private static String executePost(String hostName, int port, SSLSocketFactory sslSocketFactory, ArrayList<Byte> request) throws IOException {
-        // Number of bytes read
-        // int iBytes = 0;
-        // Byte array to read into
-        byte[] bResponse = new byte[8192];
-
-        SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(hostName, port);
-
-
+    private static ArrayList<Byte> executePost(String hostName, int port, SSLSocketFactory sslSocketFactory, ArrayList<Byte> request) throws IOException {
+            SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(hostName, port);
         try{
-
-
             // Send request
             DataOutputStream outToServer = new DataOutputStream(sslSocket.getOutputStream());
             // Prepare data to send
@@ -117,7 +107,7 @@ public class KMIPStubTransportLayerTLS implements
             // Send data
             outToServer.write(b);
             outToServer.flush();
-
+            //outToServer.close(); 
             logger.info("Data transmitted!");
 
 
@@ -132,11 +122,23 @@ public class KMIPStubTransportLayerTLS implements
 
             // Get Response
             logger.info("Fetch response..");
-            InputStream is = new DataInputStream(sslSocket.getInputStream());
-            is.read(bResponse);
-            logger.info("bytes received: " + KMIPUtils.convertByteStringToHexString(bResponse));
+            // InputStream is = new DataInputStream(sslSocket.getInputStream());
+            InputStream is = sslSocket.getInputStream();
+            //NEW
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
-            return(KMIPUtils.convertByteStringToHexString(bResponse));
+            int nRead;
+            byte[] data = new byte[16384];
+            nRead = is.read(data, 0, data.length);
+            buffer.write(data, 0, nRead);
+            logger.info("bytes received:" + nRead);
+            logger.info("finished reading.");
+            buffer.flush();
+            data = buffer.toByteArray();
+            // is.read(bResponse);
+            logger.info("bytes received: " + KMIPUtils.convertByteStringToHexString(data));
+
+            return(KMIPUtils.convertByteArrayToArrayList(data));
         } catch (Exception e) {
             e.printStackTrace();
             return null;
