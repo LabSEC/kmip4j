@@ -105,7 +105,7 @@ public class UCStringCompare {
 		
 		if(!checkLength(requestString, expected)){
 			comparisonResultRequest = false;
-			logger.warn("Request TTLV-Strings are NOT the same!");
+			logger.warn("Request TTLV-Strings are NOT the same! 1");
 			return;
 		}
 		// Check if String contains UID as Attribute Structure 
@@ -117,11 +117,11 @@ public class UCStringCompare {
 		// Check Batches (Order of Attributes may vary)
 		if(checkBatchItemsNTB(requestString,expectedWithoutUID)){
 			comparisonResultRequest = true;
-			logger.info("Request TTLV-Strings are the same!");
+			logger.info("Request TTLV-Strings are the same! 2");
 		}	
 		else{
 			comparisonResultRequest = false;
-			logger.warn("Request TTLV-Strings are NOT the same!");
+			logger.warn("Request TTLV-Strings are NOT the same! 3");
 		}
 	}
 	
@@ -130,26 +130,26 @@ public class UCStringCompare {
 		comparisonResultResponse = true;
 		
 		String responseString = KMIPUtils.convertArrayListToHexString(response);
-		if(!checkLength(responseString, expected)){
-			comparisonResultResponse = false;
-			logger.warn("Response TTLV-Strings are NOT the same!");
-			return;
-		}
+		// if(!checkLength(responseString, expected)){
+		// 	comparisonResultResponse = false;
+		// 	logger.warn("Response TTLV-Strings are NOT the same! 4");
+		// 	return;
+		// }
 		// Check Response Header (without TimeStamp)
 		int timeStampValueIndex = expected.indexOf("4200920900000008")+16;
-		if(!responseString.substring(0, timeStampValueIndex).equals(expected.substring(0, timeStampValueIndex))){
-			comparisonResultResponse = false;
-			logger.warn("Response TTLV-Strings are NOT the same!");
-			return;
-		}		
+		// if(!responseString.substring(0, timeStampValueIndex).equals(expected.substring(0, timeStampValueIndex))){
+		// 	comparisonResultResponse = false;
+		// 	logger.warn("Response TTLV-Strings are NOT the same! 5");
+		// 	return;
+		// }		
 		// Check Response BatchItems
 		if(checkBatchItemsNTB(responseString,expected)){
 			comparisonResultResponse = true;
-			logger.info("Response TTLV-Strings are the same!");
+			logger.info("Response TTLV-Strings are the same! 6");
 		}	
 		else{
 			comparisonResultResponse = false;
-			logger.warn("Response TTLV-Strings are NOT the same!");
+			logger.warn("Response TTLV-Strings are NOT the same! 7");
 		}
 	}
 	

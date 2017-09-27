@@ -74,7 +74,7 @@ public class KMIPClientGUIxml{
 		this.gui = gui;
 		try {
 			//fXmlFile = new File(ClassLoader.getSystemClassLoader().getResource("xml/UseCases.xml").toURI());
-			InputStream input = getClass().getResourceAsStream("xml/UseCases.xml");
+			InputStream input = getClass().getResourceAsStream("/home/perin/kmip/UseCases.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(input);
@@ -93,6 +93,7 @@ public class KMIPClientGUIxml{
 	 * Constructor for Custom XML Request
 	 */
 	public KMIPClientGUIxml(KMIPClientGUI gui, File f) {
+		this.gui = gui;
 		try {
 			fXmlFile = f;
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -307,11 +308,13 @@ public class KMIPClientGUIxml{
 	private void addUniqueIdentifier(Element attribute, Attribute a){
 		String uid = gui.ucc.getSelectedUID();
 		String value;
+				System.out.println("2");
 		if ((uid.equals("Default"))) {	// get value from XML
 			value = getTextFromElement(attribute, "value");	
 		} else {	// get value from GUI
 			value = uid;
 		}
+				System.out.println("3");
 		a.setValue(value, null);
 	}
 	
