@@ -101,7 +101,8 @@ public class UCStringCompare {
 	
 	public static void checkRequestNTB(ArrayList<Byte> request, String expected){
 		String requestString = KMIPUtils.convertArrayListToHexString(request);
-		String expectedWithoutUID = expected;
+		String expectedWithoutUID = expected.toUpperCase();
+		expected = expected.toUpperCase();
 		
 		if(!checkLength(requestString, expected)){
 			comparisonResultRequest = false;
