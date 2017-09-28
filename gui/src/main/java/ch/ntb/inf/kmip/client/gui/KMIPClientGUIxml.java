@@ -74,10 +74,10 @@ public class KMIPClientGUIxml{
 		this.gui = gui;
 		try {
 			//fXmlFile = new File(ClassLoader.getSystemClassLoader().getResource("xml/UseCases.xml").toURI());
-			InputStream input = getClass().getResourceAsStream("/home/perin/kmip/UseCases.xml");
+			fXmlFile = new File(ClassLoader.getSystemClassLoader().getResource("/home/perin/kmip/UseCases.xml").toURI());
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(input);
+			Document doc = dBuilder.parse(fXmlFile);
 			doc.getDocumentElement().normalize();
 			nListUseCase = doc.getElementsByTagName("usecase");		
 			numberOfUseCases = nListUseCase.getLength();
@@ -85,7 +85,6 @@ public class KMIPClientGUIxml{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Passou!");
 	}
 	
 	

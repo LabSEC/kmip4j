@@ -60,20 +60,6 @@ public class ContextProperties extends Properties {
 			e.printStackTrace();
 		}
 	}
-
-	public ContextProperties(InputStream fXmlFile) {
-		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder;
-			dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
-			doc.getDocumentElement().normalize();
-
-			getInitParameters(doc);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void getInitParameters(Document doc){
 		NodeList config = doc.getElementsByTagName("init-param");
