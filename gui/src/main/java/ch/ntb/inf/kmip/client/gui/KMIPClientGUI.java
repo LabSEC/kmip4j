@@ -62,7 +62,6 @@ public class KMIPClientGUI extends JFrame{
 	private KMIPStub createStub() {
 		//try {
 			File configFile = new File("/home/perin/kmip/StubConfig.xml");
-			//InputStream configFile = getClass().getResourceAsStream("StubConfig.xml");
 			return new KMIPStub(configFile);
 		//} catch (URISyntaxException e) {
 		// 	throw new RuntimeException(e);

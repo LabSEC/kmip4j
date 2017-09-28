@@ -137,11 +137,11 @@ public class UCStringCompare {
 		// }
 		// Check Response Header (without TimeStamp)
 		int timeStampValueIndex = expected.indexOf("4200920900000008")+16;
-		// if(!responseString.substring(0, timeStampValueIndex).equals(expected.substring(0, timeStampValueIndex))){
-		// 	comparisonResultResponse = false;
-		// 	logger.warn("Response TTLV-Strings are NOT the same! 5");
-		// 	return;
-		// }		
+		if(!responseString.substring(0, timeStampValueIndex).equals(expected.substring(0, timeStampValueIndex))){
+			comparisonResultResponse = false;
+			logger.warn("Response TTLV-Strings are NOT the same! 5");
+			return;
+		}		
 		// Check Response BatchItems
 		if(checkBatchItemsNTB(responseString,expected)){
 			comparisonResultResponse = true;
