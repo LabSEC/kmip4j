@@ -1,0 +1,98 @@
+<usecases>
+	<usecase id="0810">
+		<name>
+			<![CDATA[
+				Use Case 8.1 (0) - Create Key Pair
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				Create a new private/public key pair. <br>
+				Make sure they are linked correctly by issuing <br>
+				Locate commands with the assigned Unique Identifiers <br>
+				Finally delete both key halves. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Create Key Pair<br>
+				In: commonAttributes = { <br>
+				CryptographicAlgorithm = 'RSA', <br>
+				CryptographicLength = '2048' <br>
+				} <br>
+				privateKeyAttributes = { <br>
+				Name = {  <br>
+				NameValue = 'AKLC-M-3-12-private, <br>
+				NameType = '00000001' <br> 
+				} <br>
+				CryptographicUsageMask = '00000001', <br>
+				} <br>
+				publicKeyAttributes = { <br>
+				Name = {  <br>
+				NameValue = 'AKLC-M-3-12-public, <br>
+				NameType = '00000001' <br> 
+				} <br>
+				CryptographicUsageMask = '00000002', <br>
+				} <br>				
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Create Key Pair</operation>
+			
+				<templateattributestructure>
+					<type>CommonTemplateAttribute</type>
+					<attribute>
+						<name>Cryptographic Algorithm</name>
+						<value>RSA</value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Length</name>
+						<value>2048</value>
+					</attribute>
+				</templateattributestructure>
+				
+				<templateattributestructure>
+					<type>PrivateKeyTemplateAttribute</type>
+					<attribute>
+						<name>Name</name>
+						<values>
+							<valuename>namevalue</valuename>
+							<value>AKLC-M-3-12-private</value>
+							<valuename>nametype</valuename>
+							<value>UninterpretedTextString</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value>0x00000001</value>
+					</attribute>
+				</templateattributestructure>
+				
+				<templateattributestructure>
+					<type>PublicKeyTemplateAttribute</type>
+					<attribute>
+						<name>Name</name>
+						<values>
+							<valuename>namevalue</valuename>
+							<value>AKLC-M-3-12-public</value>
+							<valuename>nametype</valuename>
+							<value>UninterpretedTextString</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value>0x00000002</value>
+					</attribute>
+				</templateattributestructure>
+				
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000001f84200770100000038420069010000002042006a0200000004000000010000000042006b0200000004000000020000000042000d0200000004000000010000000042000f01000001b042005c05000000040000000200000000420079010000019842001f0100000070420008010000003042000a070000001743727970746f6772617068696320416c676f726974686d0042000b05000000040000000400000000420008010000003042000a070000001443727970746f67726170686963204c656e6774680000000042000b020000000400000800000000004200650100000088420008010000004842000a07000000044e616d650000000042000b01000000304200550700000013414b4c432d4d2d332d31322d70726976617465000000000042005405000000040000000100000000420008010000003042000a070000001843727970746f67726170686963205573616765204d61736b42000b0200000004000000010000000042006e0100000088420008010000004842000a07000000044e616d650000000042000b01000000304200550700000012414b4c432d4d2d332d31322d7075626c696300000000000042005405000000040000000100000000420008010000003042000a070000001843727970746f67726170686963205573616765204d61736b42000b02000000040000000200000000</ttlvrequest>
+		<ttlvresponse>42007b01000000c042007a0100000048420069010000002042006a0200000004000000010000000042006b0200000004000000020000000042009209000000080000000059cd438b42000d0200000004000000010000000042000f010000006842005c0500000004000000020000000042007f0500000004000000000000000042007c010000004042006607000000142f7670626576714771364c5547685236376953590000000042006f07000000144d4c624d3767745a374f3277474b62762b68596300000000</ttlvresponse>
+	</usecase>
+
+
+</usecases>
