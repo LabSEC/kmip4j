@@ -156,4 +156,83 @@
 		<!--key format type in the response is diferent than epected (expected: PKCS_1, found: TransparentRSAPrivateKey)-->
 	</usecase>
 
+	<usecase id="04102">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (2) - Client A: Activate
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				The Activation Date is then set, <br>
+				which changes the state to Active. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Activate <br>
+				In: uuidKey, <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Activate</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>/vpbevqGq6LUGhR67iSY</value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000804200770100000038420069010000002042006a0200000004000000010000000042006b0200000004000000020000000042000d0200000004000000010000000042000f010000003842005c05000000040000001200000000420079010000002042009407000000142f7670626576714771364c55476852363769535900000000</ttlvrequest>
+		<ttlvresponse>42007b01000000a042007a0100000048420069010000002042006a0200000004000000010000000042006b0200000004000000020000000042009209000000080000000059cd438c42000d0200000004000000010000000042000f010000004842005c0500000004000000120000000042007f0500000004000000000000000042007c010000002042009407000000142f7670626576714771364c55476852363769535900000000</ttlvresponse>
+	</usecase>
+
+	<usecase id="04103">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (3) - Client A: Get Attributes
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				A Get Attribute for the State-attribute <br>
+				reveals that the key has changed to the Active state. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Get attribute <br>
+				In: uuidKey, <br>
+				attributeName = {'State'} <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Get Attributes</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>/vpbevqGq6LUGhR67iSY</value>
+					</attribute>
+					<attribute>
+						<name>State</name>
+						<value></value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000A04200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000000000000042000D0200000004000000010000000042000F010000005842005C05000000040000000B000000004200790100000040420094070000002432316432386238612D303664662D343363302D623732662D3261313631363333616461390000000042000A07000000055374617465000000</ttlvrequest>
+		<ttlvresponse>42007B01000000D842007A0100000048420069010000002042006A0200000004000000010000000042006B020000000400000000000000004200920900000008000000004AFBED2B42000D0200000004000000010000000042000F010000008042005C05000000040000000B0000000042007F0500000004000000000000000042007C0100000058420094070000002432316432386238612D303664662D343363302D623732662D32613136313633336164613900000000420008010000002042000A0700000005537461746500000042000B05000000040000000200000000</ttlvresponse>
+	</usecase>
+
 </usecases>
