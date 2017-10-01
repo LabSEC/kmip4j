@@ -1,0 +1,377 @@
+<usecases>
+
+	<usecase id="0810">
+		<name>
+			<![CDATA[
+				Use Case 8.1 (0) - Create Key Pair
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				Create a new private/public key pair. <br>
+				Make sure they are linked correctly by issuing <br>
+				Locate commands with the assigned Unique Identifiers <br>
+				Finally delete both key halves. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Create Key Pair<br>
+				In: commonAttributes = { <br>
+				CryptographicAlgorithm = 'RSA', <br>
+				CryptographicLength = '2048' <br>
+				} <br>
+				privateKeyAttributes = { <br>
+				Name = {  <br>
+				NameValue = 'AKLC-M-1-12-private_13, <br>
+				NameType = '00000001' <br> 
+				} <br>
+				CryptographicUsageMask = '00000001', <br>
+				} <br>
+				publicKeyAttributes = { <br>
+				Name = {  <br>
+				NameValue = 'AKLC-M-1-12-public_13, <br>
+				NameType = '00000001' <br> 
+				} <br>
+				CryptographicUsageMask = '00000002', <br>
+				} <br>				
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Create Key Pair</operation>
+			
+				<templateattributestructure>
+					<type>CommonTemplateAttribute</type>
+					<attribute>
+						<name>Cryptographic Algorithm</name>
+						<value>RSA</value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Length</name>
+						<value>2048</value>
+					</attribute>
+				</templateattributestructure>
+				
+				<templateattributestructure>
+					<type>PrivateKeyTemplateAttribute</type>
+					<attribute>
+						<name>Name</name>
+						<values>
+							<valuename>namevalue</valuename>
+							<value>AKLC-M-1-12-private_13</value>
+							<valuename>nametype</valuename>
+							<value>UninterpretedTextString</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value>0x00000001</value>
+					</attribute>
+				</templateattributestructure>
+				
+				<templateattributestructure>
+					<type>PublicKeyTemplateAttribute</type>
+					<attribute>
+						<name>Name</name>
+						<values>
+							<valuename>namevalue</valuename>
+							<value>AKLC-M-1-12-public_13</value>
+							<valuename>nametype</valuename>
+							<value>UninterpretedTextString</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value>0x00000002</value>
+					</attribute>
+				</templateattributestructure>
+				
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000001F84200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F01000001B042005C05000000040000000200000000420079010000019842001F0100000070420008010000003042000A070000001743727970746F6772617068696320416C676F726974686D0042000B05000000040000000400000000420008010000003042000A070000001443727970746F67726170686963204C656E6774680000000042000B020000000400000800000000004200650100000088420008010000004842000A07000000044E616D650000000042000B01000000304200550700000016414B4C432D4D2D312D31322D707269766174655F3133000042005405000000040000000100000000420008010000003042000A070000001843727970746F67726170686963205573616765204D61736B42000B0200000004000000010000000042006E0100000088420008010000004842000A07000000044E616D650000000042000B01000000304200550700000015414B4C432D4D2D312D31322D7075626C69635F313300000042005405000000040000000100000000420008010000003042000A070000001843727970746F67726170686963205573616765204D61736B42000B02000000040000000200000000</ttlvrequest>
+		<ttlvresponse>42007B01000000C042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD63B942000D0200000004000000010000000042000F010000006842005C0500000004000000020000000042007F0500000004000000000000000042007C01000000404200660700000014666957704A4265487437416D30596349537134470000000042006F0700000014446B556F4C4777346255786446674B437644306500000000</ttlvresponse>
+	</usecase>
+
+	<usecase id="03122">
+		<name>
+			<![CDATA[
+				Use Case 3.1.2 (2) - Get Attributes
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				To verify that the attributes of the key<br>
+				were set correctly from the template, <br>
+				the client then issues a Get Attributes <br>
+				command. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Get attributes<br> 
+				In: uuidKey, <br>
+				attributeNames = { <br>
+				'State', <br>
+				'Cryptographic Usage Mask', <br>
+				'Unique Identifier', <br>
+				'Object Type', <br>
+				'Cryptographic Algorithm', <br>
+				'Cryptographic Length', <br>
+				'Digest', <br>
+				'Initial Date', <br>
+				'Last Change Date', <br>
+				'Activation Date', <br>
+				'Original Creation Date' <br>
+				} <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Get Attributes</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>fiWpJBeHt7Am0YcISq4G</value>
+					</attribute>
+					<attribute>
+						<name>State</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Object Type</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Algorithm</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Length</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Digest</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Initial Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Last Change Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Activation Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Original Creation Date</name>
+						<value></value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000001A04200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000015842005C05000000040000000B0000000042007901000001404200940700000014666957704A4265487437416D30596349537134470000000042000A0700000005537461746500000042000A070000001843727970746F67726170686963205573616765204D61736B42000A0700000011556E69717565204964656E7469666965720000000000000042000A070000000B4F626A6563742054797065000000000042000A070000001743727970746F6772617068696320416C676F726974686D0042000A070000001443727970746F67726170686963204C656E6774680000000042000A0700000006446967657374000042000A070000000C496E697469616C20446174650000000042000A07000000104C617374204368616E6765204461746542000A070000000F41637469766174696F6E20446174650042000A07000000164F726967696E616C204372656174696F6E20446174650000</ttlvrequest>
+		<ttlvresponse>42007B010000038842007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD63BA42000D0200000004000000010000000042000F010000033042005C05000000040000000B0000000042007F0500000004000000000000000042007C01000003084200940700000014666957704A4265487437416D305963495371344700000000420008010000003042000A070000000553746174650000004200090200000004000000000000000042000B05000000040000000100000000420008010000004042000A070000001843727970746F67726170686963205573616765204D61736B4200090200000004000000000000000042000B02000000040000000100000000420008010000005042000A0700000011556E69717565204964656E746966696572000000000000004200090200000004000000000000000042000B0700000014666957704A4265487437416D305963495371344700000000420008010000003842000A070000000B4F626A656374205479706500000000004200090200000004000000000000000042000B05000000040000000400000000420008010000004042000A070000001743727970746F6772617068696320416C676F726974686D004200090200000004000000000000000042000B05000000040000000400000000420008010000004042000A070000001443727970746F67726170686963204C656E677468000000004200090200000004000000000000000042000B02000000040000080000000000420008010000007042000A070000000644696765737400004200090200000004000000000000000042000B01000000484200380500000004000000060000000042003508000000208EE0F2002978E6CA3E7A5D31F97CD461FC24349276BCF5519A265CDA17A772F442004205000000040000000A00000000420008010000003842000A070000000C496E697469616C2044617465000000004200090200000004000000000000000042000B09000000080000000059CD63B9420008010000003842000A07000000104C617374204368616E676520446174654200090200000004000000000000000042000B09000000080000000059CD63B9420008010000004042000A07000000164F726967696E616C204372656174696F6E204461746500004200090200000004000000000000000042000B09000000080000000059CD63B9</ttlvresponse>
+		<!--key format type in the response is diferent than epected (expected: PKCS_1, found: TransparentRSAPrivateKey)-->
+	</usecase>	
+
+
+	<usecase id="03122">
+		<name>
+			<![CDATA[
+				Use Case 3.1.2 (2) - Get Attributes
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				To verify that the attributes of the key<br>
+				were set correctly from the template, <br>
+				the client then issues a Get Attributes <br>
+				command. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Get attributes<br> 
+				In: uuidKey, <br>
+				attributeNames = { <br>
+				'State', <br>
+				'Cryptographic Usage Mask', <br>
+				'Unique Identifier', <br>
+				'Object Type', <br>
+				'Cryptographic Algorithm', <br>
+				'Cryptographic Length', <br>
+				'Digest', <br>
+				'Initial Date', <br>
+				'Last Change Date', <br>
+				'Activation Date', <br>
+				'Original Creation Date' <br>
+				} <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Get Attributes</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>DkUoLGw4bUxdFgKCvD0e</value>
+					</attribute>
+					<attribute>
+						<name>State</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Object Type</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Algorithm</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Length</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Digest</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Initial Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Last Change Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Activation Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Original Creation Date</name>
+						<value></value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000001A04200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000015842005C05000000040000000B0000000042007901000001404200940700000014446B556F4C4777346255786446674B43764430650000000042000A0700000005537461746500000042000A070000001843727970746F67726170686963205573616765204D61736B42000A0700000011556E69717565204964656E7469666965720000000000000042000A070000000B4F626A6563742054797065000000000042000A070000001743727970746F6772617068696320416C676F726974686D0042000A070000001443727970746F67726170686963204C656E6774680000000042000A0700000006446967657374000042000A070000000C496E697469616C20446174650000000042000A07000000104C617374204368616E6765204461746542000A070000000F41637469766174696F6E20446174650042000A07000000164F726967696E616C204372656174696F6E20446174650000</ttlvrequest>
+		<ttlvresponse>42007B010000038842007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD63BB42000D0200000004000000010000000042000F010000033042005C05000000040000000B0000000042007F0500000004000000000000000042007C01000003084200940700000014446B556F4C4777346255786446674B437644306500000000420008010000003042000A070000000553746174650000004200090200000004000000000000000042000B05000000040000000100000000420008010000004042000A070000001843727970746F67726170686963205573616765204D61736B4200090200000004000000000000000042000B02000000040000000200000000420008010000005042000A0700000011556E69717565204964656E746966696572000000000000004200090200000004000000000000000042000B0700000014446B556F4C4777346255786446674B437644306500000000420008010000003842000A070000000B4F626A656374205479706500000000004200090200000004000000000000000042000B05000000040000000300000000420008010000004042000A070000001743727970746F6772617068696320416C676F726974686D004200090200000004000000000000000042000B05000000040000000400000000420008010000004042000A070000001443727970746F67726170686963204C656E677468000000004200090200000004000000000000000042000B02000000040000080000000000420008010000007042000A070000000644696765737400004200090200000004000000000000000042000B01000000484200380500000004000000060000000042003508000000200DB09E436E9174833A352FA054CF0C43BC8D7374C8FDC84DD10FA20AD505829642004205000000040000000B00000000420008010000003842000A070000000C496E697469616C2044617465000000004200090200000004000000000000000042000B09000000080000000059CD63B9420008010000003842000A07000000104C617374204368616E676520446174654200090200000004000000000000000042000B09000000080000000059CD63B9420008010000004042000A07000000164F726967696E616C204372656174696F6E204461746500004200090200000004000000000000000042000B09000000080000000059CD63B9</ttlvresponse>
+		<!--key format type in the response is diferent than epected (expected: PKCS_1, found: TransparentRSAPrivateKey)-->
+	</usecase>
+
+	<usecase id="04114">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (14) - Client A: Destroy Symmetric Key
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				The key is then revoked with a revocation reason <br>
+				of Compromised and the state subsequently changed <br>
+				to Compromised, but this does not stop a client <br>
+				from being able to get the key (since we assume here <br> 
+				that the out-of-band registration has been used to <br>
+				make the server aware of the fact that the client is <br>
+				capable of interpreting the attributes of the key <br>
+				and determining what it is allowed to do with the key). <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Destroy (symmetric key)  <br> 
+				In: uuidKey  <br> 
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Destroy</operation>
+				
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>fiWpJBeHt7Am0YcISq4G</value>
+					</attribute>
+				</attributes>
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000804200770100000038420069010000002042006a0200000004000000010000000042006b0200000004000000020000000042000d0200000004000000010000000042000f010000003842005c0500000004000000140000000042007901000000204200940700000014666957704a4265487437416d305963495371344700000000</ttlvrequest>
+		<ttlvresponse>42007b01000000a042007a0100000048420069010000002042006a0200000004000000010000000042006b0200000004000000020000000042009209000000080000000059cd63bb42000d0200000004000000010000000042000f010000004842005c0500000004000000140000000042007f0500000004000000000000000042007c01000000204200940700000014666957704a4265487437416d305963495371344700000000</ttlvresponse>
+	</usecase>
+
+		<usecase id="04114">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (14) - Client A: Destroy Symmetric Key
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				The key is then revoked with a revocation reason <br>
+				of Compromised and the state subsequently changed <br>
+				to Compromised, but this does not stop a client <br>
+				from being able to get the key (since we assume here <br> 
+				that the out-of-band registration has been used to <br>
+				make the server aware of the fact that the client is <br>
+				capable of interpreting the attributes of the key <br>
+				and determining what it is allowed to do with the key). <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Destroy (symmetric key)  <br> 
+				In: uuidKey  <br> 
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Destroy</operation>
+				
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>DkUoLGw4bUxdFgKCvD0e</value>
+					</attribute>
+				</attributes>
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000804200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000003842005C0500000004000000140000000042007901000000204200940700000014446B556F4C4777346255786446674B437644306500000000</ttlvrequest>
+		<ttlvresponse>42007B01000000A042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD63BC42000D0200000004000000010000000042000F010000004842005C0500000004000000140000000042007F0500000004000000000000000042007C01000000204200940700000014446B556F4C4777346255786446674B437644306500000000</ttlvresponse>
+	</usecase>
+
+</usecases>

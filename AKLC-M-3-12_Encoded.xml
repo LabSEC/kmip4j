@@ -113,10 +113,17 @@
 				Get attributes<br> 
 				In: uuidKey, <br>
 				attributeNames = { <br>
-				'Object Group', <br>
-				'ApplicationSpecificInformation', <br>
-				'ContactInformation',<br>
-				'x-Purpose' <br>
+				'State', <br>
+				'Cryptographic Usage Mask', <br>
+				'Unique Identifier', <br>
+				'Object Type', <br>
+				'Cryptographic Algorithm', <br>
+				'Cryptographic Length', <br>
+				'Digest', <br>
+				'Initial Date', <br>
+				'Last Change Date', <br>
+				'Activation Date', <br>
+				'Original Creation Date' <br>
 				} <br>
 			]]>
 		</details>
@@ -156,6 +163,10 @@
 					</attribute>
 					<attribute>
 						<name>Digest</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Initial Date</name>
 						<value></value>
 					</attribute>
 					<attribute>
@@ -336,10 +347,7 @@
 				Get attributes<br> 
 				In: uuidKey, <br>
 				attributeNames = { <br>
-				'Object Group', <br>
-				'ApplicationSpecificInformation', <br>
-				'ContactInformation',<br>
-				'x-Purpose' <br>
+				'State' <br>
 				} <br>
 			]]>
 		</details>
