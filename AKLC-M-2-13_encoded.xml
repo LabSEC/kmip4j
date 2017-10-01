@@ -1,0 +1,574 @@
+<usecases>
+<usecase id="0810">
+		<name>
+			<![CDATA[
+				Use Case 8.1 (0) - Create Key Pair
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				Create a new private/public key pair. <br>
+				Make sure they are linked correctly by issuing <br>
+				Locate commands with the assigned Unique Identifiers <br>
+				Finally delete both key halves. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Create Key Pair<br>
+				In: commonAttributes = { <br>
+				CryptographicAlgorithm = 'RSA', <br>
+				CryptographicLength = '2048' <br>
+				} <br>
+				privateKeyAttributes = { <br>
+				Name = {  <br>
+				NameValue = 'AKLC-M-2-12-private_13, <br>
+				NameType = '00000001' <br> 
+				} <br>
+				CryptographicUsageMask = '00000001', <br>
+				} <br>
+				publicKeyAttributes = { <br>
+				Name = {  <br>
+				NameValue = 'AKLC-M-2-12-public_13, <br>
+				NameType = '00000001' <br> 
+				} <br>
+				CryptographicUsageMask = '00000002', <br>
+				} <br>				
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Create Key Pair</operation>
+			
+				<templateattributestructure>
+					<type>CommonTemplateAttribute</type>
+					<attribute>
+						<name>Cryptographic Algorithm</name>
+						<value>RSA</value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Length</name>
+						<value>2048</value>
+					</attribute>
+				</templateattributestructure>
+				
+				<templateattributestructure>
+					<type>PrivateKeyTemplateAttribute</type>
+					<attribute>
+						<name>Name</name>
+						<values>
+							<valuename>namevalue</valuename>
+							<value>AKLC-M-2-12-private_13</value>
+							<!-- According to the xml on the link: https://docs.oasis-open.org/kmip/profiles/v1.3/cos01/test-cases/kmip-v1.3/mandatory/AKLC-M-2-13.xml, the value should be "AKLC-M-2-13-private", but in the kmip encoded file, the value is: "AKLC-M-2-12-private_13"-->
+							<valuename>nametype</valuename>
+							<value>UninterpretedTextString</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value>0x00000001</value>
+					</attribute>
+				</templateattributestructure>
+				
+				<templateattributestructure>
+					<type>PublicKeyTemplateAttribute</type>
+					<attribute>
+						<name>Name</name>
+						<values>
+							<valuename>namevalue</valuename>
+							<value>AKLC-M-2-12-public_13</value>
+							<!-- According to the xml on the link: https://docs.oasis-open.org/kmip/profiles/v1.3/cos01/test-cases/kmip-v1.3/mandatory/AKLC-M-2-13.xml, the value should be "AKLC-M-2-13-public", but in the kmip encoded file, the value is: "AKLC-M-2-12-public_13"-->
+							<valuename>nametype</valuename>
+							<value>UninterpretedTextString</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value>0x00000002</value>
+					</attribute>
+				</templateattributestructure>
+				
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000001F84200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F01000001B042005C05000000040000000200000000420079010000019842001F0100000070420008010000003042000A070000001743727970746F6772617068696320416C676F726974686D0042000B05000000040000000400000000420008010000003042000A070000001443727970746F67726170686963204C656E6774680000000042000B020000000400000800000000004200650100000088420008010000004842000A07000000044E616D650000000042000B01000000304200550700000016414B4C432D4D2D322D31322D707269766174655F3133000042005405000000040000000100000000420008010000003042000A070000001843727970746F67726170686963205573616765204D61736B42000B0200000004000000010000000042006E0100000088420008010000004842000A07000000044E616D650000000042000B01000000304200550700000015414B4C432D4D2D322D31322D7075626C69635F313300000042005405000000040000000100000000420008010000003042000A070000001843727970746F67726170686963205573616765204D61736B42000B02000000040000000200000000</ttlvrequest>
+		<ttlvresponse>42007B01000000C042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643A42000D0200000004000000010000000042000F010000006842005C0500000004000000020000000042007F0500000004000000000000000042007C01000000404200660700000014466E2B77565671787943446336586965502B532F0000000042006F07000000144241752F464777484A39497237302F686D38584D00000000</ttlvresponse>
+	</usecase>
+
+	<usecase id="03122">
+		<name>
+			<![CDATA[
+				Use Case 3.1.2 (2) - Get Attributes
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				To verify that the attributes of the key<br>
+				were set correctly from the template, <br>
+				the client then issues a Get Attributes <br>
+				command. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Get attributes<br> 
+				In: uuidKey, <br>
+				attributeNames = { <br>
+				'State', <br>
+				'Cryptographic Usage Mask', <br>
+				'Unique Identifier', <br>
+				'Object Type', <br>
+				'Cryptographic Algorithm', <br>
+				'Cryptographic Length', <br>
+				'Digest', <br>
+				'Initial Date', <br>
+				'Last Change Date', <br>
+				'Activation Date', <br>
+				'Original Creation Date' <br>
+				} <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Get Attributes</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>Fn+wVVqxyCDc6XieP+S/</value>
+					</attribute>
+					<attribute>
+						<name>State</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Usage Mask</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Object Type</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Algorithm</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Cryptographic Length</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Digest</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Initial Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Last Change Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Activation Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Original Creation Date</name>
+						<value></value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000001A04200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000015842005C05000000040000000B0000000042007901000001404200940700000014466E2B77565671787943446336586965502B532F0000000042000A0700000005537461746500000042000A070000001843727970746F67726170686963205573616765204D61736B42000A0700000011556E69717565204964656E7469666965720000000000000042000A070000000B4F626A6563742054797065000000000042000A070000001743727970746F6772617068696320416C676F726974686D0042000A070000001443727970746F67726170686963204C656E6774680000000042000A0700000006446967657374000042000A070000000C496E697469616C20446174650000000042000A07000000104C617374204368616E6765204461746542000A070000000F41637469766174696F6E20446174650042000A07000000164F726967696E616C204372656174696F6E20446174650000</ttlvrequest>
+		<ttlvresponse>42007B010000038842007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643A42000D0200000004000000010000000042000F010000033042005C05000000040000000B0000000042007F0500000004000000000000000042007C01000003084200940700000014466E2B77565671787943446336586965502B532F00000000420008010000003042000A070000000553746174650000004200090200000004000000000000000042000B05000000040000000100000000420008010000004042000A070000001843727970746F67726170686963205573616765204D61736B4200090200000004000000000000000042000B02000000040000000100000000420008010000005042000A0700000011556E69717565204964656E746966696572000000000000004200090200000004000000000000000042000B0700000014466E2B77565671787943446336586965502B532F00000000420008010000003842000A070000000B4F626A656374205479706500000000004200090200000004000000000000000042000B05000000040000000400000000420008010000004042000A070000001743727970746F6772617068696320416C676F726974686D004200090200000004000000000000000042000B05000000040000000400000000420008010000004042000A070000001443727970746F67726170686963204C656E677468000000004200090200000004000000000000000042000B02000000040000080000000000420008010000007042000A070000000644696765737400004200090200000004000000000000000042000B0100000048420038050000000400000006000000004200350800000020570D6FE2147523BE99DE4B8B8AEC5B29B5E57B68D2B5A05B13647C2C90A7636542004205000000040000000A00000000420008010000003842000A070000000C496E697469616C2044617465000000004200090200000004000000000000000042000B09000000080000000059CD643A420008010000003842000A07000000104C617374204368616E676520446174654200090200000004000000000000000042000B09000000080000000059CD643A420008010000004042000A07000000164F726967696E616C204372656174696F6E204461746500004200090200000004000000000000000042000B09000000080000000059CD643A</ttlvresponse>
+		<!--key format type in the response is diferent than epected (expected: PKCS_1, found: TransparentRSAPrivateKey)-->
+	</usecase>
+
+	<usecase id="04102">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (2) - Client A: Activate
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				The Activation Date is then set, <br>
+				which changes the state to Active. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Activate <br>
+				In: uuidKey, <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Activate</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>Fn+wVVqxyCDc6XieP+S/</value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000804200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000003842005C0500000004000000120000000042007901000000204200940700000014466E2B77565671787943446336586965502B532F00000000</ttlvrequest>
+		<ttlvresponse>42007B01000000A042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643B42000D0200000004000000010000000042000F010000004842005C0500000004000000120000000042007F0500000004000000000000000042007C01000000204200940700000014466E2B77565671787943446336586965502B532F00000000</ttlvresponse>
+	</usecase>
+
+	<usecase id="03122">
+		<name>
+			<![CDATA[
+				Use Case 3.1.2 (2) - Get Attributes
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				To verify that the attributes of the key<br>
+				were set correctly from the template, <br>
+				the client then issues a Get Attributes <br>
+				command. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Get attributes<br> 
+				In: uuidKey, <br>
+				attributeNames = { <br>
+				'State', <br>
+				'Activation Date', <br>
+				'Deactivation Date' <br>
+				} <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Get Attributes</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>Fn+wVVqxyCDc6XieP+S/</value>
+					</attribute>
+					<attribute>
+						<name>State</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Activation Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Deactivation Date</name>
+						<value></value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000C84200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000008042005C05000000040000000B0000000042007901000000684200940700000014466E2B77565671787943446336586965502B532F0000000042000A0700000005537461746500000042000A070000000F41637469766174696F6E20446174650042000A0700000011446561637469766174696F6E204461746500000000000000</ttlvrequest>
+		<ttlvresponse>42007B010000011842007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643B42000D0200000004000000010000000042000F01000000C042005C05000000040000000B0000000042007F0500000004000000000000000042007C01000000984200940700000014466E2B77565671787943446336586965502B532F00000000420008010000003042000A070000000553746174650000004200090200000004000000000000000042000B05000000040000000200000000420008010000003842000A070000000F41637469766174696F6E2044617465004200090200000004000000000000000042000B09000000080000000059CD643B</ttlvresponse>
+	</usecase>
+
+	<usecase id="03122">
+		<name>
+			<![CDATA[
+				Use Case 3.1.2 (2) - Get Attributes
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				To verify that the attributes of the key<br>
+				were set correctly from the template, <br>
+				the client then issues a Get Attributes <br>
+				command. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Get attributes<br> 
+				In: uuidKey, <br>
+				attributeNames = { <br>
+				'State', <br>
+				'Activation Date', <br>
+				'Deactivation Date' <br>
+				} <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Get Attributes</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>BAu/FGwHJ9Ir70/hm8XM</value>
+					</attribute>
+					<attribute>
+						<name>State</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Activation Date</name>
+						<value></value>
+					</attribute>
+					<attribute>
+						<name>Deactivation Date</name>
+						<value></value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000C84200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000008042005C05000000040000000B00000000420079010000006842009407000000144241752F464777484A39497237302F686D38584D0000000042000A0700000005537461746500000042000A070000000F41637469766174696F6E20446174650042000A0700000011446561637469766174696F6E204461746500000000000000</ttlvrequest>
+		<ttlvresponse>42007B01000000D842007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643B42000D0200000004000000010000000042000F010000008042005C05000000040000000B0000000042007F0500000004000000000000000042007C010000005842009407000000144241752F464777484A39497237302F686D38584D00000000420008010000003042000A070000000553746174650000004200090200000004000000000000000042000B05000000040000000100000000</ttlvresponse>
+	</usecase>
+
+	<usecase id="04114">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (14) - Client A: Destroy Symmetric Key
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				The key is then revoked with a revocation reason <br>
+				of Compromised and the state subsequently changed <br>
+				to Compromised, but this does not stop a client <br>
+				from being able to get the key (since we assume here <br> 
+				that the out-of-band registration has been used to <br>
+				make the server aware of the fact that the client is <br>
+				capable of interpreting the attributes of the key <br>
+				and determining what it is allowed to do with the key). <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Destroy (symmetric key)  <br> 
+				In: uuidKey  <br> 
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Destroy</operation>
+				
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>Fn+wVVqxyCDc6XieP+S/</value>
+					</attribute>
+				</attributes>
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000804200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000003842005C0500000004000000140000000042007901000000204200940700000014466E2B77565671787943446336586965502B532F00000000</ttlvrequest>
+		<ttlvresponse>42007B01000000D842007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643B42000D0200000004000000010000000042000F010000008042005C0500000004000000140000000042007F0500000004000000010000000042007E05000000040000000C0000000042007D07000000474F7065726174696F6E4661696C65642C205065726D697373696F6E44656E6965643A2043616E27742064657374726F79206F626A65637420676976656E2069747320737461746500</ttlvresponse>
+	</usecase>
+
+		<usecase id="04114">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (14) - Client A: Destroy Symmetric Key
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				The key is then revoked with a revocation reason <br>
+				of Compromised and the state subsequently changed <br>
+				to Compromised, but this does not stop a client <br>
+				from being able to get the key (since we assume here <br> 
+				that the out-of-band registration has been used to <br>
+				make the server aware of the fact that the client is <br>
+				capable of interpreting the attributes of the key <br>
+				and determining what it is allowed to do with the key). <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Destroy (symmetric key)  <br> 
+				In: uuidKey  <br> 
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Destroy</operation>
+				
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>BAu/FGwHJ9Ir70/hm8XM</value>
+					</attribute>
+				</attributes>
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000804200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000003842005C05000000040000001400000000420079010000002042009407000000144241752F464777484A39497237302F686D38584D00000000</ttlvrequest>
+		<ttlvresponse>42007B01000000A042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643C42000D0200000004000000010000000042000F010000004842005C0500000004000000140000000042007F0500000004000000000000000042007C010000002042009407000000144241752F464777484A39497237302F686D38584D00000000</ttlvresponse>
+	</usecase>
+
+	<usecase id="04106">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (6) - Client B: Revoke
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				The key is then revoked with a revocation reason <br>
+				of Compromised and the state subsequently changed <br>
+				to Compromised, but this does not stop a client <br>
+				from being able to add, modify and delete attributes <br>
+				or even get the key (since we assume here that the <br> 
+				out-of-band registration has been used to make <br>
+				the server aware of the fact that the client is <br>
+				capable of interpreting the attributes of the key <br>
+				and determining what it is allowed to do with the key). <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Revoke (symmetric key as compromised) <br>
+				In: uuidKey, <br>
+				RevocationReason = '00000002', <br>
+				CompromiseOccurrenceDate = '6' (Thu Jan 01 01:00:06 CET 1970) <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Revoke</operation>
+				
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>Fn+wVVqxyCDc6XieP+S/</value>
+					</attribute>
+					<attribute>
+						<name>Revocation Reason</name>
+						<values>
+							<valuename>Revocation Reason Code</valuename>
+							<value>KeyCompromise</value>
+						</values>
+					</attribute>
+					<attribute>
+						<name>Compromise Occurrence Date</name>
+						<value>1970-01-01T03:00:06+00:00</value>
+					</attribute>
+
+				</attributes>
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000A84200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000006042005C0500000004000000130000000042007901000000484200940700000014466E2B77565671787943446336586965502B532F0000000042008101000000104200820500000004000000020000000042002109000000080000000000002A36</ttlvrequest>
+		<ttlvresponse>42007B01000000A042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643C42000D0200000004000000010000000042000F010000004842005C0500000004000000130000000042007F0500000004000000000000000042007C01000000204200940700000014466E2B77565671787943446336586965502B532F00000000</ttlvresponse>
+	</usecase>
+
+		<usecase id="03122">
+		<name>
+			<![CDATA[
+				Use Case 3.1.2 (2) - Get Attributes
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				To verify that the attributes of the key<br>
+				were set correctly from the template, <br>
+				the client then issues a Get Attributes <br>
+				command. <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Get attributes<br> 
+				In: uuidKey, <br>
+				attributeNames = { <br>
+				'State' <br>
+				} <br>
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Get Attributes</operation>
+							
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>Fn+wVVqxyCDc6XieP+S/</value>
+					</attribute>
+					<attribute>
+						<name>State</name>
+						<value></value>
+					</attribute>
+				</attributes>
+			
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000904200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000004842005C05000000040000000B0000000042007901000000304200940700000014466E2B77565671787943446336586965502B532F0000000042000A07000000055374617465000000</ttlvrequest>
+		<ttlvresponse>42007B01000000D842007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643C42000D0200000004000000010000000042000F010000008042005C05000000040000000B0000000042007F0500000004000000000000000042007C01000000584200940700000014466E2B77565671787943446336586965502B532F00000000420008010000003042000A070000000553746174650000004200090200000004000000000000000042000B05000000040000000400000000</ttlvresponse>
+	</usecase>
+
+	<usecase id="04114">
+		<name>
+			<![CDATA[
+				Use Case 4.1 (14) - Client A: Destroy Symmetric Key
+			]]>
+		</name>
+		<description>
+			<![CDATA[
+				The key is then revoked with a revocation reason <br>
+				of Compromised and the state subsequently changed <br>
+				to Compromised, but this does not stop a client <br>
+				from being able to get the key (since we assume here <br> 
+				that the out-of-band registration has been used to <br>
+				make the server aware of the fact that the client is <br>
+				capable of interpreting the attributes of the key <br>
+				and determining what it is allowed to do with the key). <br>
+			]]>
+		</description>
+		<details>
+			<![CDATA[
+				Destroy (symmetric key)  <br> 
+				In: uuidKey  <br> 
+			]]>
+		</details>
+				
+		<batches>
+			<batch>
+				<operation>Destroy</operation>
+				
+				<attributes>
+					<attribute>
+						<name>Unique Identifier</name>
+						<value>Fn+wVVqxyCDc6XieP+S/</value>
+					</attribute>
+				</attributes>
+			</batch>
+		</batches>
+			
+		<ttlvrequest>42007801000000804200770100000038420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042000D0200000004000000010000000042000F010000003842005C0500000004000000140000000042007901000000204200940700000014466E2B77565671787943446336586965502B532F00000000</ttlvrequest>
+		<ttlvresponse>42007B01000000A042007A0100000048420069010000002042006A0200000004000000010000000042006B0200000004000000020000000042009209000000080000000059CD643C42000D0200000004000000010000000042000F010000004842005C0500000004000000140000000042007F0500000004000000000000000042007C01000000204200940700000014466E2B77565671787943446336586965502B532F00000000</ttlvresponse>
+	</usecase>
+
+</usecases>
